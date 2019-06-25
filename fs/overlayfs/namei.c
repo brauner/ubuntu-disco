@@ -838,11 +838,6 @@ struct dentry *ovl_lookup(struct inode *dir, struct dentry *dentry,
 		if (err)
 			goto out;
 
-		if (upperdentry && unlikely(ovl_dentry_remote(upperdentry))) {
-			dput(upperdentry);
-			err = -EREMOTE;
-			goto out;
-		}
 		if (upperdentry && !d.is_dir) {
 			unsigned int origin_ctr = 0;
 
